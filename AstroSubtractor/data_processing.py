@@ -58,7 +58,7 @@ def crop_image(data, x, y, size=50, invert=False):
         convention. We made use of .fits data with the (x, y) = (0, 0) position at the top
         left of the image, for this reason we switched x and y when cropping out individual
         objects. The parameter invert=True performs the coordinate switch for us. This is only
-        required because AstroSubtract's cropping function assumes standard convention.
+        required because AstroSubtractor's cropping function assumes standard convention.
 
     Args:
         data (array): 2D array.
@@ -74,10 +74,10 @@ def crop_image(data, x, y, size=50, invert=False):
 
     Example:
         If we have a 100x100 image, we can crop this by setting x,y = (50,50), which
-        would be the center of of the image. Since AstroSubtract standard is 50x50, we will 
+        would be the center of of the image. Since AstroSubtractor standard is 50x50, we will 
         set the size of the reshaped array to 50.
 
-        >>> from AstroSubtract import data_processing
+        >>> from AstroSubtractor import data_processing
         >>> resize = data_processing.crop_image(data, x=50, y=50, size=50)
 
         If your image is 200x200, then x, y = (100,100), and so on.
@@ -273,7 +273,7 @@ def create_training_set(blob_data, other_data, img_num_channels=1, normalize=Tru
         This function is for binary classification only, the manual procedure for multiclass
         training set creation looks as follows:
 
-        >>> from AstroSubtract.data_processing import process_class
+        >>> from AstroSubtractor.data_processing import process_class
         >>> import numpy as np 
 
         >>> class1_data, class1_label = process_class(data1, label=0)

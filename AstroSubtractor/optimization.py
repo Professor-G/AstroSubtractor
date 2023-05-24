@@ -41,13 +41,13 @@ from boruta import BorutaPy
 from xgboost import XGBClassifier, DMatrix, train
 from optuna.integration import TFKerasPruningCallback
 optuna.logging.set_verbosity(optuna.logging.WARNING)
-from AstroSubtract.data_augmentation import augmentation, resize
-from AstroSubtract import data_processing, cnn_model
+from AstroSubtractor.data_augmentation import augmentation, resize
+from AstroSubtractor import data_processing, cnn_model
 
 
 class objective_cnn(object):
     """
-    Optimization objective function for AstroSubtract's convolutional neural networks.
+    Optimization objective function for AstroSubtractor's convolutional neural networks.
 
     This is passed through the hyper_opt() function when optimizing with
     Optuna. The Optuna software for hyperparameter optimization was published in 
@@ -765,10 +765,10 @@ class objective_cnn(object):
                 raise ValueError('CNN cross-validation is only supported if validation data is input.')
             if self.val_positive is not None:
                 if len(self.positive_class) / len(self.val_positive) < self.opt_cv-1:
-                    raise ValueError('Cannot evenly partition the positive training/validation data, refer to the AstroSubtract API documentation for instructions on how to use the opt_cv parameter.')
+                    raise ValueError('Cannot evenly partition the positive training/validation data, refer to the AstroSubtractor API documentation for instructions on how to use the opt_cv parameter.')
             if self.val_negative is not None:
                 if len(self.negative_class) / len(self.val_negative) < self.opt_cv-1:
-                    raise ValueError('Cannot evenly partition the negative training/validation data, refer to the AstroSubtract API documentation for instructions on how to use the opt_cv parameter.')
+                    raise ValueError('Cannot evenly partition the negative training/validation data, refer to the AstroSubtractor API documentation for instructions on how to use the opt_cv parameter.')
             
             #The first model (therefore the first "fold") already ran, therefore sutbract 1      
             for k in range(self.opt_cv-1):          
@@ -1422,7 +1422,7 @@ def hyper_opt(data_x=None, data_y=None, val_X=None, val_Y=None, img_num_channels
     Optimizes hyperparameters using a k-fold cross validation splitting strategy.
 
     **IMPORTANT** In the case of CNN optimization, data_x and data_y are not the standard
-    data plus labels -- AstroSubtract assumes binary classification always therefore if optimizing a 
+    data plus labels -- AstroSubtractor assumes binary classification always therefore if optimizing a 
     CNN the samples for the first class should be passed through the data_x parameter, and the 
     samples for the second class should be given as data_y. These two classes will automatically 
     be assigned the positive and negative labels 1 and 0, respectively. Likewise, if optimizing a 
@@ -1621,7 +1621,7 @@ def hyper_opt(data_x=None, data_y=None, val_X=None, val_Y=None, img_num_channels
             else:
                 sample_weight = None
         else:
-            print('Unbalanced dataset detected but the optimization routine does not currently support weights. To use the weighted_binary_crossentropy loss function, load the desired model directly and set loss="weighted_binary_crossentropy" (refer to the AstroSubtract.cnn_model API documentation).')
+            print('Unbalanced dataset detected but the optimization routine does not currently support weights. To use the weighted_binary_crossentropy loss function, load the desired model directly and set loss="weighted_binary_crossentropy" (refer to the AstroSubtractor.cnn_model API documentation).')
     else:
         sample_weight = None
 

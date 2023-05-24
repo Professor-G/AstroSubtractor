@@ -5,7 +5,7 @@ Created on Thu Sep 27 08:28:20 2021
 
 @author: daniel
 """
-from AstroSubtract.data_processing import crop_image, concat_channels
+from AstroSubtractor.data_processing import crop_image, concat_channels
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.utils import to_categorical
 from scipy.ndimage.interpolation import zoom

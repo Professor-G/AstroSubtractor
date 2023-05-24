@@ -37,9 +37,9 @@ from tensorflow.keras.losses import categorical_crossentropy, Hinge, SquaredHing
 from tensorflow.keras.layers import Input, Activation, Dense, Dropout, Conv2D, MaxPool2D, Add, ZeroPadding2D, \
     AveragePooling2D, GlobalAveragePooling2D, Flatten, BatchNormalization, Lambda, concatenate
 from optuna.importance import get_param_importances, FanovaImportanceEvaluator
-from pyBIA.data_processing import process_class, create_training_set, concat_channels
-from pyBIA.data_augmentation import augmentation, resize, smote_oversampling, plot
-from pyBIA import optimization
+from AstroSubtractor.data_processing import process_class, create_training_set, concat_channels
+from AstroSubtractor.data_augmentation import augmentation, resize, smote_oversampling, plot
+from AstroSubtractor import optimization
 
 
 from tensorflow.keras import layers
@@ -623,14 +623,14 @@ class Classifier:
 
     def save(self, dirname=None, overwrite=False):
         """
-        Saves the trained classifier in a new directory named 'pyBIA_models', 
+        Saves the trained classifier in a new directory named 'AstroSubtractor_models', 
         as well as the imputer and the features to use, if applicable.
         
         Args:
             dirname (str): The name of the directory where the model folder will be saved.
                 This directory will be created, and therefore if it already exists
                 in the system an error will appear.
-            overwrite (bool, optional): If True the 'pyBIA_cnn_model' folder this
+            overwrite (bool, optional): If True the 'AstroSubtractor_cnn_model' folder this
                 function creates in the specified path will be deleted if it exists
                 and created anew to avoid duplicate files. 
         """
@@ -651,20 +651,20 @@ class Classifier:
                 raise ValueError('The dirname folder already exists!')
 
         try:
-            os.mkdir(path+'pyBIA_cnn_model')
+            os.mkdir(path+'AstroSubtractor_cnn_model')
         except FileExistsError:
             if overwrite:
                 try:
-                    os.rmdir(path+'pyBIA_cnn_model')
+                    os.rmdir(path+'AstroSubtractor_cnn_model')
                 except OSError:
-                    for file in os.listdir(path+'pyBIA_cnn_model'):
-                        os.remove(path+'pyBIA_cnn_model/'+file)
-                    os.rmdir(path+'pyBIA_cnn_model')
-                os.mkdir(path+'pyBIA_cnn_model')
+                    for file in os.listdir(path+'AstroSubtractor_cnn_model'):
+                        os.remove(path+'AstroSubtractor_cnn_model/'+file)
+                    os.rmdir(path+'AstroSubtractor_cnn_model')
+                os.mkdir(path+'AstroSubtractor_cnn_model')
             else:
-                raise ValueError('Tried to create "pyBIA_cnn_model" directory in specified path but folder already exists! If you wish to overwrite set overwrite=True.')
+                raise ValueError('Tried to create "AstroSubtractor_cnn_model" directory in specified path but folder already exists! If you wish to overwrite set overwrite=True.')
         
-        path += 'pyBIA_cnn_model/'
+        path += 'AstroSubtractor_cnn_model/'
         if self.model is not None:
             save_model(self.model, path+'Keras_Model.h5')#,  custom_objects={'f1_score': f1_score})
             np.savetxt(path+'model_train_metrics', np.c_[self.history.history['binary_accuracy'], self.history.history['loss'], self.history.history['f1_score']], header='binary_accuracy\tloss\tf1_score')
@@ -698,7 +698,7 @@ class Classifier:
     def load(self, path=None, load_training_data=False):
         """ 
         Loads the model, imputer, and feats to use, if created and saved.
-        This function will look for a folder named 'pyBIA_models' in the
+        This function will look for a folder named 'AstroSubtractor_models' in the
         local home directory, unless a path argument is set. 
 
         Args:
@@ -708,7 +708,7 @@ class Classifier:
 
         path = str(Path.home()) if path is None else path
         path += '/' if path[-1] != '/' else ''
-        path += 'pyBIA_cnn_model/'
+        path += 'AstroSubtractor_cnn_model/'
 
         try:
             self.model = load_model(path+'Keras_Model.h5', compile=False) #custom_objects={'f1_score': f1_score, 'loss': loss})
