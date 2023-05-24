@@ -10,9 +10,9 @@ AstroSubtractor is an open-source deep learning program that leverages a Convolu
     $ pip install AstroSubtractor
 ```
 
-# Documentation
+# [Documentation](https://astrosubtractor.readthedocs.io/en/latest/)
 
-For technical details and an example of how to implement AstroSubtractor, check out the Documentation.
+For technical details and an example of how to implement AstroSubtractor, check out the [Documentation](https://astrosubtractor.readthedocs.io/en/latest/).
 
 
 # How to Contribute?
