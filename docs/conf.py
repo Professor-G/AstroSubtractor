@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'AstroSubtract'
+project = 'AstroSubtractor'
 copyright = '2022, Daniel Godines'
 author = 'Daniel Godines'
 
@@ -50,7 +50,7 @@ extensions = [
 
 autosummary_generate = True
 autoapi_type = 'python'
-autoapi_dirs = ['../AstroSubtract', './source']
+autoapi_dirs = ['../AstroSubtractor', './source']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -60,7 +60,7 @@ templates_path = ['_templates']
 #
 # source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
-exclude_patterns = ['../AstroSubtract/test/*']
+exclude_patterns = ['../AstroSubtractor/test/*']
 # The master toctree document.
 master_doc = 'index'
 
@@ -115,7 +115,7 @@ html_static_path = ["./source/_static"]
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'AstroSubtractdoc'
+htmlhelp_basename = 'AstroSubtractordoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -142,7 +142,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'AstroSubtract.tex', 'AstroSubtract Documentation',
+    (master_doc, 'AstroSubtractor.tex', 'AstroSubtractor Documentation',
      'AUTHORNAME', 'manual'),
 ]
 
@@ -152,7 +152,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'AstroSubtract', 'AstroSubtract Documentation',
+    (master_doc, 'AstroSubtractor', 'AstroSubtractor Documentation',
      [author], 1)
 ]
 
@@ -163,8 +163,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'AstroSubtract', 'AstroSubtract Documentation',
-     author, 'AstroSubtract', 'Machine Learning Engine',
+    (master_doc, 'AstroSubtractor', 'AstroSubtractor Documentation',
+     author, 'AstroSubtractor', 'Machine Learning Engine',
      'Miscellaneous'),
 ]
 
